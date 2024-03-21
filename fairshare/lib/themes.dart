@@ -70,10 +70,7 @@ class Themes {
           fontSize: 12,
           fontWeight: FontWeight.normal,
         ),
-        // labelLarge: TextStyle(
-        //   fontSize: 16,
-        //   color:  Colors.grey[400].withOpacity(0.6),
-        // ),
+        labelSmall: TextStyle(fontSize: 12, color: Colors.grey[600]),
       ),
     );
   }

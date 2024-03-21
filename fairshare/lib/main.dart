@@ -1,3 +1,4 @@
+import 'package:fairshare/home/home.dart';
 import 'package:fairshare/login/widgets/login_methods.dart';
 import 'package:fairshare/login/widgets/logo.dart';
 import 'package:fairshare/services/size_config.dart';
@@ -15,22 +16,24 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const Home(),
+        '/home': (context) => Container(),
+      },
       theme: Themes.darkTheme,
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _LoginPageState extends State<LoginPage> {
   bool isLoading = true;
   @override
   void initState() {

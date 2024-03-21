@@ -74,11 +74,12 @@ class Logo extends StatelessWidget {
               ),
               Text(
                 'Equal Shares, Equal Cares',
-                style: TextStyle(
-                    color: Colors.grey[600],
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12,
-                    letterSpacing: 4),
+                style: theme.textTheme.labelSmall!.copyWith(letterSpacing: 4),
+                // style: TextStyle(
+                //     color: Colors.grey[600],
+                //     fontWeight: FontWeight.w500,
+                //     fontSize: 12,
+                //     letterSpacing: 4),
               )
             ],
           )

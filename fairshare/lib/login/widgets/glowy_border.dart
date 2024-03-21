@@ -10,7 +10,6 @@ import 'package:flutter/cupertino.dart';
 /// [gradientColors] specify which colors to use for the gradient
 /// [borderSize] specifies how big the hard border is around your widget
 /// [glowSize] specifies how far and intense the glow should be
-/// [borderRadius] should match the border radius of the child to make it look nice
 /// [animationProgress] if != null, the gradient will rotate towards its destination. Value between 0..1
 /// [child] content does not get blurred, is surrounded by the glowing border
 /// [stretchAlongAxis] use if you place this widget inside column or row with stretch alignment
