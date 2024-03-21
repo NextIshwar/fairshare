@@ -1,0 +1,106 @@
+import 'package:fairshare/services/size_config.dart';
+import 'package:flutter/material.dart';
+
+class AllTransactions extends StatelessWidget {
+  const AllTransactions({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: SizeConfig.screenWidth,
+      height: SizeConfig.screenHeight * 0.3,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'All Transactions',
+                style: Theme.of(context)
+                    .textTheme
+                    .displayMedium!
+                    .copyWith(fontWeight: FontWeight.normal),
+              ),
+              Text(
+                'View All',
+                style: TextStyle(
+                  color: Theme.of(context).highlightColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
+              )
+            ],
+          ),
+          SizedBox(
+            height: 12.toMobileHeight,
+          ),
+          Expanded(
+            child: ListView.builder(
+                itemCount: 40,
+                itemBuilder: (context, index) => const Padding(
+                      padding: EdgeInsets.only(bottom: 8.0),
+                      child: TransactionCard(),
+                    )),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class TransactionCard extends StatelessWidget {
+  const TransactionCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Container(
+              height: 40.toMobileHeight,
+              width: 40.toMobileHeight,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Theme.of(context).dividerColor,
+              ),
+              alignment: Alignment.center,
+              child: const Icon(
+                Icons.h_mobiledata,
+                color: const Color.fromARGB(255, 96, 150, 177),
+              ),
+            ),
+            SizedBox(
+              width: 12.toMobileWidth,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Sumething transaction',
+                  style: Theme.of(context).textTheme.displayMedium,
+                ),
+                SizedBox(
+                  height: 4.toMobileHeight,
+                ),
+                Text(
+                  'Jun 07 | 01:30 PM',
+                  style: TextStyle(
+                      color: Theme.of(context).dividerColor,
+                      fontSize: 12,
+                      fontWeight: FontWeight.normal),
+                )
+              ],
+            ),
+          ],
+        ),
+        Text(
+          'Rs600/-',
+          style: Theme.of(context).textTheme.displayMedium,
+        )
+      ],
+    );
+  }
+}

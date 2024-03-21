@@ -1,15 +1,77 @@
+import 'dart:ui';
+
+import 'package:fairshare/home/widgets/all_transactions.dart';
 import 'package:fairshare/home/widgets/bills.dart';
+import 'package:fairshare/home/widgets/navigation_card.dart';
 import 'package:fairshare/home/widgets/profile_and_notifications.dart';
+import 'package:fairshare/home/widgets/recent_splinters.dart';
 import 'package:fairshare/services/size_config.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  String? selectedTab;
+  Map<String, bool> navigationTab = {
+    'Home': true,
+    'Friends': false,
+    'Graph': false,
+    'Profile': false,
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    selectedTab = 'Home';
+  }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      bottomNavigationBar: ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Container(
+            height: 80.toMobileHeight,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(24),
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Colors.grey[200]!.withOpacity(0.5),
+                  Colors.grey[800]!.withOpacity(0.5),
+                ],
+              ),
+            ),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: _navigationTab
+                    .map((e) => Padding(
+                          padding: const EdgeInsets.only(right: 2.0),
+                          child: NavigationCard(
+                            onTap: () {
+                              setState(() {
+                                navigationTab[selectedTab!] = false;
+                                selectedTab = e.title;
+                                navigationTab[e.title] = true;
+                              });
+                            },
+                            icon: e.icon,
+                            title: e.title,
+                            isSelected: navigationTab[e.title]!,
+                          ),
+                        ))
+                    .toList()),
+          ),
+        ),
+      ),
       backgroundColor: Theme.of(context).primaryColor,
       body: Padding(
         padding: EdgeInsets.only(
@@ -24,9 +86,31 @@ class Home extends StatelessWidget {
               thickness: 1,
             ),
             const Bills(),
+            SizedBox(
+              height: 28.toMobileHeight,
+            ),
+            const RecentSplinters(),
+            SizedBox(
+              height: 28.toMobileHeight,
+            ),
+            const AllTransactions()
           ],
         ),
       ),
     );
   }
+}
+
+List<NavigationModel> _navigationTab = [
+  NavigationModel(Icons.home_outlined, 'Home', isSelected: true),
+  NavigationModel(Icons.group_outlined, 'Friends'),
+  NavigationModel(Icons.bar_chart_outlined, 'Graph'),
+  NavigationModel(Icons.person_outline, 'Profile')
+];
+
+class NavigationModel {
+  final String title;
+  final IconData icon;
+  bool isSelected;
+  NavigationModel(this.icon, this.title, {this.isSelected = false});
 }
