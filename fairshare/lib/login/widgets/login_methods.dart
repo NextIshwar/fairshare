@@ -6,7 +6,8 @@ import 'package:fairshare/services/size_config.dart';
 import 'package:flutter/material.dart';
 
 class LoginMethods extends StatefulWidget {
-  const LoginMethods({super.key});
+  final double? height;
+  const LoginMethods({super.key, this.height});
 
   @override
   State<LoginMethods> createState() => _LoginMethodsState();
@@ -29,8 +30,9 @@ class _LoginMethodsState extends State<LoginMethods> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 3,
+    return AnimatedContainer(
+      height: widget.height,
+      duration: Duration(seconds: 4),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

@@ -51,11 +51,21 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: theme.primaryColor,
       body: SizedBox(
         width: SizeConfig.screenWidth,
-        child: const Column(
-          children: [
-            Logo(),
-            LoginMethods(),
-          ],
+        height: SizeConfig.screenHeight,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Logo(
+                height: isLoading
+                    ? SizeConfig.screenHeight
+                    : SizeConfig.screenHeight / 3,
+              ),
+              if (!isLoading)
+                LoginMethods(
+                  height: SizeConfig.screenHeight / 1.5,
+                ),
+            ],
+          ),
         ),
       ),
     );

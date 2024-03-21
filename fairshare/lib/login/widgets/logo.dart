@@ -3,13 +3,15 @@ import 'package:fairshare/services/size_config.dart';
 import 'package:flutter/material.dart';
 
 class Logo extends StatelessWidget {
-  const Logo({super.key});
+  final double? height;
+  const Logo({super.key, this.height});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Expanded(
-      flex: 2,
+    return AnimatedContainer(
+      height: height,
+      duration: const Duration(seconds: 2),
       child: Stack(
         alignment: AlignmentDirectional.center,
         children: [
@@ -33,10 +35,10 @@ class Logo extends StatelessWidget {
             borderSize: 1,
             glowSize: 5,
             gradientColors: [
-              Colors.transparent,
-              Colors.transparent,
-              Colors.transparent,
               Theme.of(context).highlightColor,
+              Colors.transparent,
+              Colors.transparent,
+              Colors.transparent,
             ],
             child: Container(
               height: 140.toMobileHeight,
