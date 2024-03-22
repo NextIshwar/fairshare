@@ -99,7 +99,9 @@ class _HomeState extends State<Home> {
                 curve: Curves.easeInOut,
                 opacity: startAnimation ? 1 : 0,
                 duration: const Duration(milliseconds: 500 + (2 * 200)),
-                child: const Bills()),
+                child: Bills(
+                  startAnimation: startAnimation,
+                )),
             SizedBox(
               height: 28.toMobileHeight,
             ),
@@ -107,14 +109,18 @@ class _HomeState extends State<Home> {
                 curve: Curves.easeInOut,
                 opacity: startAnimation ? 1 : 0,
                 duration: const Duration(milliseconds: 500 + (3 * 200)),
-                child: const RecentSplinters()),
+                child: RecentSplinters(
+                  startAnimation: startAnimation,
+                )),
             SizedBox(
               height: 28.toMobileHeight,
             ),
             AnimatedOpacity(
                 opacity: startAnimation ? 1 : 0,
                 duration: const Duration(milliseconds: 500 + (4 * 200)),
-                child: const AllTransactions())
+                child: AllTransactions(
+                  startAnimation: startAnimation,
+                ))
           ],
         ),
       ),

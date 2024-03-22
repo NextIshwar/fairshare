@@ -19,7 +19,7 @@ class AnimationWrapper extends StatelessWidget {
     return AnimatedContainer(
       decoration: decoration,
       curve: Curves.easeInOut,
-      duration: Duration(milliseconds: 300 + (index * 200)),
+      duration: Duration(milliseconds: 200 + (index * 200)),
       height: 48.toMobileHeight,
       transform: Matrix4.translationValues(
           startAnimation ? 0 : SizeConfig.screenWidth - 48, 0, 0),

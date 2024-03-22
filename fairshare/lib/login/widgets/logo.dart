@@ -11,7 +11,7 @@ class Logo extends StatelessWidget {
     final theme = Theme.of(context);
     return AnimatedContainer(
       height: height,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(milliseconds: 700),
       child: Stack(
         alignment: AlignmentDirectional.center,
         children: [

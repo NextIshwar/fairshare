@@ -2,7 +2,8 @@ import 'package:fairshare/services/size_config.dart';
 import 'package:flutter/material.dart';
 
 class AllTransactions extends StatelessWidget {
-  const AllTransactions({super.key});
+  final bool startAnimation;
+  const AllTransactions({super.key, this.startAnimation = false});
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +38,19 @@ class AllTransactions extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
-                itemCount: 40,
-                itemBuilder: (context, index) => const Padding(
-                      padding: EdgeInsets.only(bottom: 8.0),
-                      child: TransactionCard(),
-                    )),
+              physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics()),
+              itemCount: 40,
+              itemBuilder: (context, index) => AnimatedContainer(
+                duration: Duration(milliseconds: 200 + (index * 200)),
+                transform: Matrix4.translationValues(
+                    startAnimation ? 0 : SizeConfig.screenWidth - 48, 0, 0),
+                child: const Padding(
+                  padding: EdgeInsets.only(bottom: 8.0),
+                  child: TransactionCard(),
+                ),
+              ),
+            ),
           )
         ],
       ),

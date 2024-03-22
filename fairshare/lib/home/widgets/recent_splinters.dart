@@ -2,7 +2,8 @@ import 'package:fairshare/services/size_config.dart';
 import 'package:flutter/material.dart';
 
 class RecentSplinters extends StatelessWidget {
-  const RecentSplinters({super.key});
+  final bool startAnimation;
+  const RecentSplinters({super.key, this.startAnimation = false});
 
   @override
   Widget build(BuildContext context) {
@@ -42,20 +43,26 @@ class RecentSplinters extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: 5,
             itemBuilder: (context, index) => index != 4
-                ? Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 4.toMobileWidth, vertical: 4.toMobileWidth),
-                    child: Container(
-                      height: 50.toMobileHeight,
-                      width: 50.toMobileHeight,
-                      alignment: Alignment.center,
-                      margin: const EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                          image: const DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage('lib/assets/images/img.jpg')),
-                          borderRadius: BorderRadius.circular(4),
-                          color: Theme.of(context).highlightColor),
+                ? AnimatedContainer(
+                    duration: Duration(milliseconds: 200 + (index * 200)),
+                    transform: Matrix4.translationValues(
+                        startAnimation ? 0 : SizeConfig.screenWidth - 48, 0, 0),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 4.toMobileWidth,
+                          vertical: 4.toMobileWidth),
+                      child: Container(
+                        height: 50.toMobileHeight,
+                        width: 50.toMobileHeight,
+                        alignment: Alignment.center,
+                        margin: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                            image: const DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage('lib/assets/images/img.jpg')),
+                            borderRadius: BorderRadius.circular(4),
+                            color: Theme.of(context).highlightColor),
+                      ),
                     ),
                   )
                 : Padding(
