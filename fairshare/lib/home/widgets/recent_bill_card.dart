@@ -22,7 +22,7 @@ class RecentBillCard extends StatelessWidget {
               width: width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(borderRadius),
-                color: Theme.of(context).primaryColorLight,
+                color: Theme.of(context).dividerColor.withOpacity(0.6),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,29 +37,39 @@ class RecentBillCard extends StatelessWidget {
                         ),
                   ),
                   SizedBox(
-                    height: 8.toMobileHeight,
+                    height: 12.toMobileHeight,
                   ),
                   RichText(
                     text: TextSpan(children: [
                       TextSpan(
                           text: '\u{20B9}200/ ',
-                          style: Theme.of(context).textTheme.displayMedium),
-                      TextSpan(
-                          text: '\u{20B9}600',
                           style: Theme.of(context)
                               .textTheme
-                              .titleMedium!
-                              .copyWith(
-                                  fontWeight: FontWeight.w300,
-                                  color: Colors.grey[700]))
+                              .displayMedium!
+                              .copyWith(letterSpacing: 1.25)),
+                      TextSpan(
+                        text: '\u{20B9}600',
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium!
+                            .copyWith(
+                              fontWeight: FontWeight.w300,
+                              color: const Color.fromARGB(255, 148, 147, 147),
+                              letterSpacing: 1.25,
+                            ),
+                      )
                     ]),
                   ),
                   SizedBox(
                     height: 4.toMobileHeight,
                   ),
-                  Text('Your Split',
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          fontWeight: FontWeight.w300, color: Colors.grey[700]))
+                  Text(
+                    'Your Split',
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          fontWeight: FontWeight.w300,
+                          color: const Color.fromARGB(255, 148, 147, 147),
+                        ),
+                  )
                 ],
               ),
             ),

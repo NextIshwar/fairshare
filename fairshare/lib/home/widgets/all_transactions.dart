@@ -42,6 +42,7 @@ class AllTransactions extends StatelessWidget {
                   parent: AlwaysScrollableScrollPhysics()),
               itemCount: 40,
               itemBuilder: (context, index) => AnimatedContainer(
+                curve: Curves.easeOut,
                 duration: Duration(milliseconds: 200 + (index * 200)),
                 transform: Matrix4.translationValues(
                     startAnimation ? 0 : SizeConfig.screenWidth - 48, 0, 0),
@@ -88,8 +89,11 @@ class TransactionCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Sumething transaction',
-                  style: Theme.of(context).textTheme.displayMedium,
+                  'Something transaction',
+                  style: Theme.of(context)
+                      .textTheme
+                      .displayMedium!
+                      .copyWith(fontWeight: FontWeight.w400),
                 ),
                 SizedBox(
                   height: 4.toMobileHeight,

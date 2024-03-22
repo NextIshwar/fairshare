@@ -44,6 +44,7 @@ class RecentSplinters extends StatelessWidget {
             itemCount: 5,
             itemBuilder: (context, index) => index != 4
                 ? AnimatedContainer(
+                    curve: Curves.easeOut,
                     duration: Duration(milliseconds: 200 + (index * 200)),
                     transform: Matrix4.translationValues(
                         startAnimation ? 0 : SizeConfig.screenWidth - 48, 0, 0),

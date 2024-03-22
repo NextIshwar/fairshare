@@ -21,7 +21,7 @@ class Bills extends StatelessWidget {
             CustomIconButton(
               height: 36.toMobileHeight,
               width: 100.toMobileWidth,
-              buttonColor: Theme.of(context).primaryColorLight,
+              buttonColor: Theme.of(context).dividerColor.withOpacity(0.6),
               icon: Icons.add,
             ),
           ],
@@ -37,6 +37,7 @@ class Bills extends StatelessWidget {
             itemCount: 4,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) => AnimatedContainer(
+              curve: Curves.easeOut,
               duration: Duration(milliseconds: 200 + (index * 200)),
               transform: Matrix4.translationValues(
                   startAnimation ? 0 : SizeConfig.screenWidth - 48, 0, 0),

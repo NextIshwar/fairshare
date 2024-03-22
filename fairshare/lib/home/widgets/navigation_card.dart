@@ -25,7 +25,7 @@ class NavigationCard extends StatelessWidget {
             color:
                 isSelected ? Colors.black.withOpacity(0.5) : Colors.transparent,
             borderRadius: BorderRadius.circular(16)),
-        duration: const Duration(milliseconds: 100),
+        duration: const Duration(milliseconds: 500),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

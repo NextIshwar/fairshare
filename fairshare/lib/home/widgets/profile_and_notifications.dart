@@ -50,7 +50,7 @@ class ProfileAndNotification extends StatelessWidget {
               width: 32,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: theme.dividerColor,
+                  color: theme.dividerColor.withOpacity(0.6),
                   borderRadius: BorderRadius.circular(4)),
               child: const Icon(Icons.notifications_outlined),
             ),

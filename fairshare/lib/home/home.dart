@@ -87,7 +87,7 @@ class _HomeState extends State<Home> {
         child: Column(
           children: [
             AnimatedOpacity(
-                curve: Curves.easeInOut,
+                curve: Curves.easeIn,
                 opacity: startAnimation ? 1 : 0,
                 duration: const Duration(milliseconds: 500 + (1 * 200)),
                 child: const ProfileAndNotification()),
