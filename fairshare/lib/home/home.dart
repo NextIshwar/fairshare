@@ -17,6 +17,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   String? selectedTab;
+  bool startAnimation = false;
   Map<String, bool> navigationTab = {
     'Home': true,
     'Friends': false,
@@ -28,6 +29,11 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     selectedTab = 'Home';
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      setState(() {
+        startAnimation = true;
+      });
+    });
   }
 
   @override
@@ -80,20 +86,35 @@ class _HomeState extends State<Home> {
             top: 32.toMobileHeight),
         child: Column(
           children: [
-            const ProfileAndNotification(),
+            AnimatedOpacity(
+                curve: Curves.easeInOut,
+                opacity: startAnimation ? 1 : 0,
+                duration: const Duration(milliseconds: 500 + (1 * 200)),
+                child: const ProfileAndNotification()),
             Divider(
               color: Theme.of(context).dividerColor,
               thickness: 1,
             ),
-            const Bills(),
+            AnimatedOpacity(
+                curve: Curves.easeInOut,
+                opacity: startAnimation ? 1 : 0,
+                duration: const Duration(milliseconds: 500 + (2 * 200)),
+                child: const Bills()),
             SizedBox(
               height: 28.toMobileHeight,
             ),
-            const RecentSplinters(),
+            AnimatedOpacity(
+                curve: Curves.easeInOut,
+                opacity: startAnimation ? 1 : 0,
+                duration: const Duration(milliseconds: 500 + (3 * 200)),
+                child: const RecentSplinters()),
             SizedBox(
               height: 28.toMobileHeight,
             ),
-            const AllTransactions()
+            AnimatedOpacity(
+                opacity: startAnimation ? 1 : 0,
+                duration: const Duration(milliseconds: 500 + (4 * 200)),
+                child: const AllTransactions())
           ],
         ),
       ),

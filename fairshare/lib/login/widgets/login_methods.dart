@@ -92,6 +92,9 @@ class _LoginMethodsState extends State<LoginMethods> {
               width: SizeConfig.screenWidth,
               height: 180.toMobileHeight,
               buttonName: 'Login',
+              onPressed: () {
+                Navigator.pushNamed(context, '/home');
+              },
             ),
           ),
           SizedBox(
