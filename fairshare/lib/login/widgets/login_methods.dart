@@ -16,6 +16,15 @@ class LoginMethods extends StatefulWidget {
 class _LoginMethodsState extends State<LoginMethods> {
   double screenHeight = 0;
   bool startAnimation = false;
+  late FocusNode _userNameFocusNode;
+  late FocusNode _passwordFocusNode;
+
+  @override
+  void dispose() {
+    _userNameFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -26,13 +35,15 @@ class _LoginMethodsState extends State<LoginMethods> {
         startAnimation = true;
       });
     });
+    _userNameFocusNode = FocusNode();
+    _passwordFocusNode = FocusNode();
   }
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       height: widget.height,
-      duration: Duration(seconds: 4),
+      duration: const Duration(seconds: 4),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -41,6 +52,11 @@ class _LoginMethodsState extends State<LoginMethods> {
             width: SizeConfig.screenWidth - 48,
             hintText: 'Enter your name',
             title: 'User name',
+            focusNode: _userNameFocusNode,
+            textInputAction: TextInputAction.next,
+            onFieldSubmitted: (_) {
+              FocusScope.of(context).requestFocus(_passwordFocusNode);
+            },
           ),
           SizedBox(
             height: 16.toMobileHeight,
@@ -50,6 +66,11 @@ class _LoginMethodsState extends State<LoginMethods> {
             title: 'Password',
             width: SizeConfig.screenWidth - 48,
             hintText: 'Enter your password',
+            focusNode: _passwordFocusNode,
+            textInputAction: TextInputAction.done,
+            onFieldSubmitted: (_) {
+              _passwordFocusNode.unfocus();
+            },
           ),
           SizedBox(
             height: 8.toMobileHeight,

@@ -79,7 +79,7 @@ class TransactionCard extends StatelessWidget {
               alignment: Alignment.center,
               child: const Icon(
                 Icons.h_mobiledata,
-                color: const Color.fromARGB(255, 96, 150, 177),
+                color: Color.fromARGB(255, 96, 150, 177),
               ),
             ),
             SizedBox(
@@ -90,10 +90,8 @@ class TransactionCard extends StatelessWidget {
               children: [
                 Text(
                   'Something transaction',
-                  style: Theme.of(context)
-                      .textTheme
-                      .displayMedium!
-                      .copyWith(fontWeight: FontWeight.w400),
+                  style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                      fontWeight: FontWeight.w300, letterSpacing: 1.1),
                 ),
                 SizedBox(
                   height: 4.toMobileHeight,
@@ -111,7 +109,10 @@ class TransactionCard extends StatelessWidget {
         ),
         Text(
           'Rs600/-',
-          style: Theme.of(context).textTheme.displayMedium,
+          style: Theme.of(context)
+              .textTheme
+              .displayMedium!
+              .copyWith(letterSpacing: 1.1, fontWeight: FontWeight.w300),
         )
       ],
     );
