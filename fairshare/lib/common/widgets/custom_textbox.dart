@@ -8,17 +8,20 @@ class CustomTextBox extends StatefulWidget {
   final FocusNode? focusNode;
   final TextInputAction? textInputAction;
   final void Function(String)? onFieldSubmitted;
-  const CustomTextBox({
-    super.key,
-    this.height,
-    this.width,
-    required this.hintText,
-    required this.title,
-    required this.index,
-    this.focusNode,
-    this.textInputAction,
-    this.onFieldSubmitted,
-  });
+  final bool readOnly;
+  final TextStyle? hintStyle;
+  const CustomTextBox(
+      {super.key,
+      this.height,
+      this.width,
+      required this.hintText,
+      required this.title,
+      required this.index,
+      this.focusNode,
+      this.textInputAction,
+      this.onFieldSubmitted,
+      this.hintStyle,
+      this.readOnly = false});
 
   @override
   State<CustomTextBox> createState() => _CustomTextBoxState();
@@ -57,6 +60,7 @@ class _CustomTextBoxState extends State<CustomTextBox> {
           height: 8.toMobileHeight,
         ),
         TextFormField(
+          readOnly: widget.readOnly,
           style: Theme.of(context).textTheme.displaySmall,
           cursorColor: Theme.of(context).highlightColor,
           focusNode: widget.focusNode,
@@ -64,7 +68,8 @@ class _CustomTextBoxState extends State<CustomTextBox> {
           onFieldSubmitted: widget.onFieldSubmitted,
           decoration: InputDecoration(
             hintText: widget.hintText,
-            hintStyle: Theme.of(context).textTheme.titleSmall,
+            hintStyle:
+                widget.hintStyle ?? Theme.of(context).textTheme.titleSmall,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(

@@ -76,32 +76,37 @@ class RecentBillCard extends StatelessWidget {
           ),
           Positioned(
             bottom: 0,
-            child: Container(
-              height: 36.toMobileHeight,
-              width: 108.toMobileWidth,
-              decoration: BoxDecoration(
-                color: Theme.of(context).highlightColor,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.edit_outlined,
-                    color: Theme.of(context).textTheme.bodyMedium!.color,
-                    size: 14,
-                  ),
-                  SizedBox(
-                    width: 8.toMobileWidth,
-                  ),
-                  Text(
-                    'Edit the Bill',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(fontSize: 12),
-                  )
-                ],
+            child: InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, '/create-bill');
+              },
+              child: Container(
+                height: 36.toMobileHeight,
+                width: 108.toMobileWidth,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).highlightColor,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.edit_outlined,
+                      color: Theme.of(context).textTheme.bodyMedium!.color,
+                      size: 14,
+                    ),
+                    SizedBox(
+                      width: 8.toMobileWidth,
+                    ),
+                    Text(
+                      'Edit the Bill',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(fontSize: 12),
+                    )
+                  ],
+                ),
               ),
             ),
           )
