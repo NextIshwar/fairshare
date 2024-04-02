@@ -1,3 +1,4 @@
+import 'package:fairshare/common/constants.dart';
 import 'package:fairshare/services/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -91,7 +92,9 @@ class TransactionCard extends StatelessWidget {
                 Text(
                   'Something transaction',
                   style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                      fontWeight: FontWeight.w300, letterSpacing: 1.1),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1.2),
                 ),
                 SizedBox(
                   height: 4.toMobileHeight,
@@ -108,7 +111,7 @@ class TransactionCard extends StatelessWidget {
           ],
         ),
         Text(
-          'Rs600/-',
+          '${Constants.rs}600/-',
           style: Theme.of(context)
               .textTheme
               .displayMedium!

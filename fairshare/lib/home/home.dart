@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:fairshare/friends/friends.dart';
 import 'package:fairshare/home/widgets/all_transactions.dart';
 import 'package:fairshare/home/widgets/bills.dart';
 import 'package:fairshare/home/widgets/navigation_card.dart';
@@ -39,6 +40,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
     return Scaffold(
       bottomNavigationBar: ClipRect(
         child: BackdropFilter(
@@ -46,7 +48,8 @@ class _HomeState extends State<Home> {
           child: Container(
             height: 80.toMobileHeight,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(24),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(24)),
               gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
@@ -79,51 +82,53 @@ class _HomeState extends State<Home> {
         ),
       ),
       backgroundColor: Theme.of(context).primaryColor,
-      body: Padding(
-        padding: EdgeInsets.only(
-            left: 12.toMobileWidth,
-            right: 12.toMobileWidth,
-            top: 32.toMobileHeight),
-        child: Column(
-          children: [
-            AnimatedOpacity(
-                curve: Curves.easeIn,
-                opacity: startAnimation ? 1 : 0,
-                duration: const Duration(milliseconds: 500 + (1 * 200)),
-                child: const ProfileAndNotification()),
-            Divider(
-              color: Theme.of(context).dividerColor,
-              thickness: 1,
+      body: selectedTab == 'Friends'
+          ? const FriendsAndGroups()
+          : Padding(
+              padding: EdgeInsets.only(
+                  left: 12.toMobileWidth,
+                  right: 12.toMobileWidth,
+                  top: 32.toMobileHeight),
+              child: Column(
+                children: [
+                  AnimatedOpacity(
+                      curve: Curves.easeIn,
+                      opacity: startAnimation ? 1 : 0,
+                      duration: const Duration(milliseconds: 500 + (1 * 200)),
+                      child: const ProfileAndNotification()),
+                  Divider(
+                    color: Theme.of(context).dividerColor,
+                    thickness: 1,
+                  ),
+                  AnimatedOpacity(
+                      curve: Curves.easeInOut,
+                      opacity: startAnimation ? 1 : 0,
+                      duration: const Duration(milliseconds: 500 + (2 * 200)),
+                      child: Bills(
+                        startAnimation: startAnimation,
+                      )),
+                  SizedBox(
+                    height: 28.toMobileHeight,
+                  ),
+                  AnimatedOpacity(
+                      curve: Curves.easeInOut,
+                      opacity: startAnimation ? 1 : 0,
+                      duration: const Duration(milliseconds: 500 + (3 * 200)),
+                      child: RecentSplinters(
+                        startAnimation: startAnimation,
+                      )),
+                  SizedBox(
+                    height: 28.toMobileHeight,
+                  ),
+                  AnimatedOpacity(
+                      opacity: startAnimation ? 1 : 0,
+                      duration: const Duration(milliseconds: 500 + (4 * 200)),
+                      child: AllTransactions(
+                        startAnimation: startAnimation,
+                      ))
+                ],
+              ),
             ),
-            AnimatedOpacity(
-                curve: Curves.easeInOut,
-                opacity: startAnimation ? 1 : 0,
-                duration: const Duration(milliseconds: 500 + (2 * 200)),
-                child: Bills(
-                  startAnimation: startAnimation,
-                )),
-            SizedBox(
-              height: 28.toMobileHeight,
-            ),
-            AnimatedOpacity(
-                curve: Curves.easeInOut,
-                opacity: startAnimation ? 1 : 0,
-                duration: const Duration(milliseconds: 500 + (3 * 200)),
-                child: RecentSplinters(
-                  startAnimation: startAnimation,
-                )),
-            SizedBox(
-              height: 28.toMobileHeight,
-            ),
-            AnimatedOpacity(
-                opacity: startAnimation ? 1 : 0,
-                duration: const Duration(milliseconds: 500 + (4 * 200)),
-                child: AllTransactions(
-                  startAnimation: startAnimation,
-                ))
-          ],
-        ),
-      ),
     );
   }
 }

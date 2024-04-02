@@ -1,3 +1,4 @@
+import 'package:fairshare/common/widgets/custom_icon.dart';
 import 'package:fairshare/services/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -43,18 +44,7 @@ class ProfileAndNotification extends StatelessWidget {
               )
             ],
           ),
-          InkWell(
-            onTap: () {},
-            child: Container(
-              height: 32,
-              width: 32,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  color: theme.dividerColor.withOpacity(0.6),
-                  borderRadius: BorderRadius.circular(4)),
-              child: const Icon(Icons.notifications_outlined),
-            ),
-          )
+          CustomIcon(icon: Icons.notifications_outlined, onTap: () {})
         ],
       ),
     );
