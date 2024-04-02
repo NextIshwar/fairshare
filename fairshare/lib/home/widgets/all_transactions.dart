@@ -10,7 +10,7 @@ class AllTransactions extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: SizeConfig.screenWidth,
-      height: SizeConfig.screenHeight * 0.3,
+      height: SizeConfig.screenHeight * 0.4,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
