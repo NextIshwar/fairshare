@@ -28,12 +28,15 @@ class _CreateBillState extends State<CreateBill> {
 
   @override
   Widget build(BuildContext context) {
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
-          'Create New Bill',
+          arguments['pageTitle'],
           style: Theme.of(context)
               .textTheme
               .displayMedium!

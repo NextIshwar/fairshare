@@ -37,19 +37,23 @@ class AllTransactions extends StatelessWidget {
           SizedBox(
             height: 12.toMobileHeight,
           ),
-          Expanded(
-            child: ListView.builder(
-              physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()),
-              itemCount: 40,
-              itemBuilder: (context, index) => AnimatedContainer(
-                curve: Curves.easeOut,
-                duration: Duration(milliseconds: 200 + (index * 200)),
-                transform: Matrix4.translationValues(
-                    startAnimation ? 0 : SizeConfig.screenWidth - 48, 0, 0),
-                child: const Padding(
-                  padding: EdgeInsets.only(bottom: 8.0),
-                  child: TransactionCard(),
+          MediaQuery.removePadding(
+            removeTop: true,
+            context: context,
+            child: Expanded(
+              child: ListView.builder(
+                physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics()),
+                itemCount: 40,
+                itemBuilder: (context, index) => AnimatedContainer(
+                  curve: Curves.easeOut,
+                  duration: Duration(milliseconds: 200 + (index * 200)),
+                  transform: Matrix4.translationValues(
+                      startAnimation ? 0 : SizeConfig.screenWidth - 48, 0, 0),
+                  child: const Padding(
+                    padding: EdgeInsets.only(bottom: 8.0),
+                    child: TransactionCard(),
+                  ),
                 ),
               ),
             ),

@@ -42,45 +42,6 @@ class _HomeState extends State<Home> {
     SizeConfig().init(context);
 
     return Scaffold(
-      // bottomNavigationBar: ClipRect(
-      //   child: BackdropFilter(
-      //     filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-      //     child: Container(
-      //       height: 80.toMobileHeight,
-      //       decoration: BoxDecoration(
-      //         borderRadius:
-      //             const BorderRadius.vertical(top: Radius.circular(24)),
-      //         gradient: LinearGradient(
-      //           begin: Alignment.centerLeft,
-      //           end: Alignment.centerRight,
-      //           colors: [
-      //             Colors.grey[200]!.withOpacity(0.5),
-      //             Colors.grey[800]!.withOpacity(0.5),
-      //           ],
-      //         ),
-      //       ),
-      //       child: Row(
-      //           mainAxisAlignment: MainAxisAlignment.center,
-      //           children: _navigationTab
-      //               .map((e) => Padding(
-      //                     padding: const EdgeInsets.only(right: 2.0),
-      //                     child: NavigationCard(
-      //                       onTap: () {
-      //                         setState(() {
-      //                           navigationTab[selectedTab!] = false;
-      //                           selectedTab = e.title;
-      //                           navigationTab[e.title] = true;
-      //                         });
-      //                       },
-      //                       icon: e.icon,
-      //                       title: e.title,
-      //                       isSelected: navigationTab[e.title]!,
-      //                     ),
-      //                   ))
-      //               .toList()),
-      //     ),
-      //   ),
-      // ),
       backgroundColor: Theme.of(context).primaryColor,
       body: Stack(children: [
         selectedTab == 'Friends'
@@ -130,13 +91,11 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
+        Align(
+          alignment: Alignment.bottomCenter,
           child: ClipRect(
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+              filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
               child: Container(
                 height: 80.toMobileHeight,
                 decoration: BoxDecoration(

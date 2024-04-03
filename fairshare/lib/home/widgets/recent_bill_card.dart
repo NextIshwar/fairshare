@@ -78,7 +78,8 @@ class RecentBillCard extends StatelessWidget {
             bottom: 0,
             child: InkWell(
               onTap: () {
-                Navigator.pushNamed(context, '/create-bill');
+                Navigator.pushNamed(context, '/create-bill',
+                    arguments: {'pageTitle': 'Edit the bill'});
               },
               child: Container(
                 height: 36.toMobileHeight,

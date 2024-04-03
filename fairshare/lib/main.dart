@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const LoginPage(),
         '/home': (context) => const Home(),
-        '/create-bill': (context) => const CreateBill()
+        '/create-bill': (context) => const CreateBill(),
       },
       theme: Themes.darkTheme,
     );
