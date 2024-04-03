@@ -1,9 +1,9 @@
 import 'dart:ui';
-
 import 'package:fairshare/friends/friends.dart';
 import 'package:fairshare/home/widgets/all_transactions.dart';
 import 'package:fairshare/home/widgets/bills.dart';
 import 'package:fairshare/home/widgets/navigation_card.dart';
+import 'package:fairshare/home/widgets/notification_end_drawer.dart';
 import 'package:fairshare/home/widgets/profile_and_notifications.dart';
 import 'package:fairshare/home/widgets/recent_splinters.dart';
 import 'package:fairshare/services/size_config.dart';
@@ -17,6 +17,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
   String? selectedTab;
   bool startAnimation = false;
   Map<String, bool> navigationTab = {
@@ -42,6 +44,7 @@ class _HomeState extends State<Home> {
     SizeConfig().init(context);
 
     return Scaffold(
+      key: scaffoldKey,
       backgroundColor: Theme.of(context).primaryColor,
       body: Stack(children: [
         selectedTab == 'Friends'
@@ -134,6 +137,11 @@ class _HomeState extends State<Home> {
           ),
         )
       ]),
+      endDrawer: NotificationEndDrawer(
+        closeDrawer: () {
+          scaffoldKey.currentState?.closeEndDrawer();
+        },
+      ),
     );
   }
 }

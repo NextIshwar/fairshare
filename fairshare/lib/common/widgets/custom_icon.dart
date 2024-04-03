@@ -15,7 +15,7 @@ class CustomIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         height: height ?? 32,
         width: width ?? 32,

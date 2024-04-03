@@ -44,7 +44,11 @@ class ProfileAndNotification extends StatelessWidget {
               )
             ],
           ),
-          CustomIcon(icon: Icons.notifications_outlined, onTap: () {})
+          CustomIcon(
+              icon: Icons.notifications_outlined,
+              onTap: () {
+                Scaffold.of(context).openEndDrawer();
+              })
         ],
       ),
     );
