@@ -18,6 +18,7 @@ class _LoginMethodsState extends State<LoginMethods> {
   bool startAnimation = false;
   late FocusNode _userNameFocusNode;
   late FocusNode _passwordFocusNode;
+  bool obscureText = true;
 
   @override
   void dispose() {
@@ -64,6 +65,18 @@ class _LoginMethodsState extends State<LoginMethods> {
           CustomTextBox(
             index: 2,
             title: 'Password',
+            obscureText: obscureText,
+            suffixIcon: IconButton(
+              icon: Icon(
+                obscureText ? Icons.visibility : Icons.visibility_off,
+                color: Theme.of(context).dividerColor,
+              ),
+              onPressed: () {
+                setState(() {
+                  obscureText = !obscureText;
+                });
+              },
+            ),
             width: SizeConfig.screenWidth - 48,
             hintText: 'Enter your password',
             focusNode: _passwordFocusNode,
