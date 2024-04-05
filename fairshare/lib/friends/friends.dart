@@ -198,9 +198,9 @@ class _GroupListState extends State<GroupList> {
                                   children: [
                                     AnimatedContainer(
                                         duration:
-                                            const Duration(milliseconds: 500),
-                                        height: 62.toMobileHeight,
-                                        width: 52.toMobileHeight,
+                                            const Duration(milliseconds: 300),
+                                        height: 48.toMobileHeight,
+                                        width: 48.toMobileHeight,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(8),
@@ -210,8 +210,8 @@ class _GroupListState extends State<GroupList> {
                                         child: Image.asset(
                                           IconImages.images[rng.nextInt(
                                               IconImages.images.length)],
-                                          height: 40,
-                                          width: 40,
+                                          height: 30.toMobileWidth,
+                                          width: 30.toMobileWidth,
                                         )),
                                     SizedBox(
                                       width: 8.toMobileWidth,
