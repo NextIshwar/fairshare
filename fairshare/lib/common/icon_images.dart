@@ -19,6 +19,10 @@ class IconImages {
   static const cigarette = 'lib/assets/icon_images/cigarette.png';
   static const shopping = 'lib/assets/icon_images/shopping.png';
   static const petrol = 'lib/assets/icon_images/petrol.png';
+  static const crown = 'lib/assets/icon_images/crown.png';
+  static const darkMode = 'lib/assets/icon_images/dark_mode.png';
+  static const help = 'lib/assets/icon_images/help.png';
+  static const lightMode = 'lib/assets/icon_images/light_mode.png';
 
   static const List<String> images = [
     burger,

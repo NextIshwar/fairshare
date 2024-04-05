@@ -1,4 +1,5 @@
 import 'package:fairshare/common/constants.dart';
+import 'package:fairshare/common/widgets/image_icon.dart';
 import 'package:fairshare/home/model/all_transaction_model.dart';
 import 'package:fairshare/services/size_config.dart';
 import 'package:flutter/material.dart';
@@ -80,20 +81,7 @@ class TransactionCard extends StatelessWidget {
       children: [
         Row(
           children: [
-            Container(
-              height: 40.toMobileHeight,
-              width: 40.toMobileHeight,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Theme.of(context).dividerColor,
-              ),
-              alignment: Alignment.center,
-              child: Image.asset(
-                transactions.picture!,
-                height: 30,
-                width: 30,
-              ),
-            ),
+            CutomImageIcon(imagePath: transactions.picture!),
             SizedBox(
               width: 12.toMobileWidth,
             ),

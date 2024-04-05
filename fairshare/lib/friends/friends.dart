@@ -166,141 +166,147 @@ class _GroupListState extends State<GroupList> {
               itemCount: 30,
               itemBuilder: (context, index) => Column(
                 children: [
-                  AnimationWrapper(
-                    startAnimation: widget.startAnimation,
-                    index: index,
-                    height: 64.toMobileHeight,
-                    child: InkWell(
-                      highlightColor:
-                          Theme.of(context).dividerColor.withOpacity(0.8),
-                      onTap: () {
-                        if (widget.animationController?.isDismissed ?? true) {
-                          widget.animationController?.forward();
-                        } else {
-                          widget.animationController?.reverse();
-                        }
-                        setState(() {
-                          isExpanded[index] = !isExpanded[index];
-                        });
-                      },
-                      child: SizedBox(
-                        width: SizeConfig.screenWidth,
-                        child: Padding(
-                          padding: EdgeInsets.only(bottom: 8.toMobileHeight),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  AnimatedContainer(
-                                      duration:
-                                          const Duration(milliseconds: 500),
-                                      height: 62.toMobileHeight,
-                                      width: 52.toMobileHeight,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
-                                        color: Theme.of(context).dividerColor,
-                                      ),
-                                      alignment: Alignment.center,
-                                      child: Image.asset(
-                                        IconImages.images[rng
-                                            .nextInt(IconImages.images.length)],
-                                        height: 40,
-                                        width: 40,
-                                      )),
-                                  SizedBox(
-                                    width: 8.toMobileWidth,
-                                  ),
-                                  FittedBox(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text(
-                                          'Isle of Wight Trip',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .displayMedium,
+                  AnimatedOpacity(
+                    curve: Curves.easeIn,
+                    opacity: widget.startAnimation ? 1 : 0,
+                    duration: const Duration(milliseconds: 500 + (1 * 200)),
+                    child: AnimationWrapper(
+                      startAnimation: widget.startAnimation,
+                      index: index,
+                      height: 64.toMobileHeight,
+                      child: InkWell(
+                        highlightColor:
+                            Theme.of(context).dividerColor.withOpacity(0.8),
+                        onTap: () {
+                          if (widget.animationController?.isDismissed ?? true) {
+                            widget.animationController?.forward();
+                          } else {
+                            widget.animationController?.reverse();
+                          }
+                          setState(() {
+                            isExpanded[index] = !isExpanded[index];
+                          });
+                        },
+                        child: SizedBox(
+                          width: SizeConfig.screenWidth,
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 8.toMobileHeight),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    AnimatedContainer(
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                        height: 62.toMobileHeight,
+                                        width: 52.toMobileHeight,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          color: Theme.of(context).dividerColor,
                                         ),
-                                        SizedBox(
-                                          height: 6.toMobileHeight,
-                                        ),
-                                        if (isExpanded[index]) ...[
-                                          RichText(
-                                            text: TextSpan(
-                                                text: 'Chris Owes you ',
-                                                style: TextStyle(
-                                                    color: Theme.of(context)
-                                                        .disabledColor,
-                                                    fontSize: 12,
-                                                    letterSpacing: 1.1,
-                                                    fontWeight:
-                                                        FontWeight.w100),
-                                                children: const [
-                                                  TextSpan(
-                                                      text:
-                                                          '${Constants.rs}500',
-                                                      style: TextStyle(
-                                                          color: Colors
-                                                              .greenAccent,
-                                                          letterSpacing: 1.1))
-                                                ]),
+                                        alignment: Alignment.center,
+                                        child: Image.asset(
+                                          IconImages.images[rng.nextInt(
+                                              IconImages.images.length)],
+                                          height: 40,
+                                          width: 40,
+                                        )),
+                                    SizedBox(
+                                      width: 8.toMobileWidth,
+                                    ),
+                                    FittedBox(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text(
+                                            'Isle of Wight Trip',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .displayMedium,
                                           ),
                                           SizedBox(
-                                            height: 2.toMobileHeight,
+                                            height: 6.toMobileHeight,
                                           ),
-                                          RichText(
-                                            text: TextSpan(
-                                                text: 'Harry Owes you ',
-                                                style: TextStyle(
-                                                    color: Theme.of(context)
-                                                        .disabledColor,
-                                                    fontSize: 12,
-                                                    letterSpacing: 1.1,
-                                                    fontWeight:
-                                                        FontWeight.w100),
-                                                children: const [
-                                                  TextSpan(
-                                                      text:
-                                                          '${Constants.rs}1500',
-                                                      style: TextStyle(
-                                                          color: Colors
-                                                              .greenAccent,
-                                                          letterSpacing: 1.1))
-                                                ]),
-                                          ),
-                                        ]
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              AnimatedSwitcher(
-                                duration: const Duration(milliseconds: 150),
-                                transitionBuilder: (child, anim) =>
-                                    RotationTransition(
-                                  turns: child.key == const ValueKey('icon1')
-                                      ? Tween<double>(begin: 1, end: 0)
-                                          .animate(anim)
-                                      : Tween<double>(begin: 0, end: 1)
-                                          .animate(anim),
-                                  child: FadeTransition(
-                                      opacity: anim, child: child),
-                                ),
-                                child: isExpanded[index]
-                                    ? const RotatedBox(
-                                        quarterTurns: 90,
-                                        child: Icon(Icons.arrow_drop_down,
-                                            key: ValueKey('icon1')),
-                                      )
-                                    : const Icon(
-                                        Icons.arrow_drop_down,
-                                        key: ValueKey('icon2'),
+                                          if (isExpanded[index]) ...[
+                                            RichText(
+                                              text: TextSpan(
+                                                  text: 'Chris Owes you ',
+                                                  style: TextStyle(
+                                                      color: Theme.of(context)
+                                                          .disabledColor,
+                                                      fontSize: 12,
+                                                      letterSpacing: 1.1,
+                                                      fontWeight:
+                                                          FontWeight.w100),
+                                                  children: const [
+                                                    TextSpan(
+                                                        text:
+                                                            '${Constants.rs}500',
+                                                        style: TextStyle(
+                                                            color: Colors
+                                                                .greenAccent,
+                                                            letterSpacing: 1.1))
+                                                  ]),
+                                            ),
+                                            SizedBox(
+                                              height: 2.toMobileHeight,
+                                            ),
+                                            RichText(
+                                              text: TextSpan(
+                                                  text: 'Harry Owes you ',
+                                                  style: TextStyle(
+                                                      color: Theme.of(context)
+                                                          .disabledColor,
+                                                      fontSize: 12,
+                                                      letterSpacing: 1.1,
+                                                      fontWeight:
+                                                          FontWeight.w100),
+                                                  children: const [
+                                                    TextSpan(
+                                                        text:
+                                                            '${Constants.rs}1500',
+                                                        style: TextStyle(
+                                                            color: Colors
+                                                                .greenAccent,
+                                                            letterSpacing: 1.1))
+                                                  ]),
+                                            ),
+                                          ]
+                                        ],
                                       ),
-                              ),
-                            ],
+                                    ),
+                                  ],
+                                ),
+                                AnimatedSwitcher(
+                                  duration: const Duration(milliseconds: 150),
+                                  transitionBuilder: (child, anim) =>
+                                      RotationTransition(
+                                    turns: child.key == const ValueKey('icon1')
+                                        ? Tween<double>(begin: 1, end: 0)
+                                            .animate(anim)
+                                        : Tween<double>(begin: 0, end: 1)
+                                            .animate(anim),
+                                    child: FadeTransition(
+                                        opacity: anim, child: child),
+                                  ),
+                                  child: isExpanded[index]
+                                      ? const RotatedBox(
+                                          quarterTurns: 90,
+                                          child: Icon(Icons.arrow_drop_down,
+                                              key: ValueKey('icon1')),
+                                        )
+                                      : const Icon(
+                                          Icons.arrow_drop_down,
+                                          key: ValueKey('icon2'),
+                                        ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
