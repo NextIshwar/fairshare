@@ -1,6 +1,8 @@
 import 'package:fairshare/common/constants.dart';
 import 'package:fairshare/common/widgets/custom_icon.dart';
 import 'package:fairshare/common/widgets/glassmorphic_wrapper.dart';
+import 'package:fairshare/home/model/notification_model.dart';
+import 'package:fairshare/home/widgets/all_transactions.dart';
 import 'package:fairshare/services/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +12,8 @@ class NotificationEndDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final notificationData =
+        AllNotification.fromJson(dummyNotificationList).notification;
     return GlassmorphicWrapper(
       borderRadius: 16,
       blurSigmaX: 10,
@@ -61,19 +65,23 @@ class NotificationEndDrawer extends StatelessWidget {
                   physics: const BouncingScrollPhysics(
                     parent: AlwaysScrollableScrollPhysics(),
                   ),
-                  itemCount: 4,
+                  itemCount: notificationData!.length,
                   itemBuilder: (context, index) => Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Today $index',
+                        formatDateToMonthYear(
+                            notificationData[index].dateTime!),
                         style: Theme.of(context)
                             .textTheme
                             .displayMedium!
                             .copyWith(fontSize: 16),
                       ),
-                      SizedBox(
-                        height: 300.toMobileHeight,
+                      Container(
+                        margin: EdgeInsets.only(bottom: 28.toMobileHeight),
+                        height: (60 *
+                                notificationData[index].allTransactions!.length)
+                            .toMobileHeight,
                         child: MediaQuery.removePadding(
                           removeTop: true,
                           context: context,
@@ -81,41 +89,53 @@ class NotificationEndDrawer extends StatelessWidget {
                             physics: const BouncingScrollPhysics(
                               parent: NeverScrollableScrollPhysics(),
                             ),
-                            itemCount: 4,
-                            itemBuilder: (context, index) => Padding(
-                              padding: EdgeInsets.only(top: 16.toMobileHeight),
-                              child: Row(
-                                children: [
-                                  CustomIcon(
-                                    height: 44.toMobileHeight,
-                                    width: 44.toMobileHeight,
-                                    icon: Icons.restaurant_outlined,
-                                    onTap: () {},
-                                  ),
-                                  SizedBox(
-                                    width: 16.toMobileHeight,
-                                  ),
-                                  Flexible(
-                                    child: RichText(
-                                      text: const TextSpan(
-                                        text:
-                                            'Jimmy paid ${Constants.rs}600/- for football ticket and you owe him ',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.normal),
-                                        children: [
-                                          TextSpan(
-                                              text: '${Constants.rs}60/-',
-                                              style: TextStyle(
-                                                  color: Colors.redAccent,
-                                                  fontWeight:
-                                                      FontWeight.normal))
-                                        ],
+                            itemCount:
+                                notificationData[index].allTransactions!.length,
+                            itemBuilder: (context, ind) {
+                              final transactionData =
+                                  notificationData[index].allTransactions![ind];
+                              return Padding(
+                                padding:
+                                    EdgeInsets.only(top: 16.toMobileHeight),
+                                child: Row(
+                                  children: [
+                                    CustomIcon(
+                                      height: 44.toMobileHeight,
+                                      width: 44.toMobileHeight,
+                                      iconWidget: Image.asset(
+                                        transactionData.picture!,
+                                        height: 25.toMobileHeight,
+                                        width: 25.toMobileHeight,
                                       ),
+                                      onTap: () {},
                                     ),
-                                  )
-                                ],
-                              ),
-                            ),
+                                    SizedBox(
+                                      width: 16.toMobileHeight,
+                                    ),
+                                    Flexible(
+                                      child: RichText(
+                                        text: TextSpan(
+                                          text:
+                                              '${transactionData.whoPaid} paid ${Constants.rs}600/- for ${transactionData.transactionMessage} and ${transactionData.whoOwe} ${transactionData.whoPaid == 'You' ? 'owes you' : 'owe him'} ',
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.normal),
+                                          children: [
+                                            TextSpan(
+                                              text:
+                                                  '${Constants.rs}${transactionData.dueAmount}/-',
+                                              style: const TextStyle(
+                                                color: Colors.redAccent,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              );
+                            },
                           ),
                         ),
                       )

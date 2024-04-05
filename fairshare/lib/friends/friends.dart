@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:fairshare/common/constants.dart';
+import 'package:fairshare/common/icon_images.dart';
 import 'package:fairshare/common/widgets/custom_icon.dart';
 import 'package:fairshare/common/widgets/toggle_switch.dart';
 import 'package:fairshare/friends/friends_card.dart';
@@ -133,6 +136,7 @@ class _GroupListState extends State<GroupList> {
 
   @override
   Widget build(BuildContext context) {
+    final rng = Random();
     return Column(
       children: [
         Row(
@@ -189,19 +193,21 @@ class _GroupListState extends State<GroupList> {
                               Row(
                                 children: [
                                   AnimatedContainer(
-                                    duration: const Duration(milliseconds: 500),
-                                    height: 62.toMobileHeight,
-                                    width: 52.toMobileHeight,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      color: Theme.of(context).dividerColor,
-                                    ),
-                                    alignment: Alignment.center,
-                                    child: const Icon(
-                                      Icons.h_mobiledata,
-                                      color: Color.fromARGB(255, 96, 150, 177),
-                                    ),
-                                  ),
+                                      duration:
+                                          const Duration(milliseconds: 500),
+                                      height: 62.toMobileHeight,
+                                      width: 52.toMobileHeight,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: Theme.of(context).dividerColor,
+                                      ),
+                                      alignment: Alignment.center,
+                                      child: Image.asset(
+                                        IconImages.images[rng
+                                            .nextInt(IconImages.images.length)],
+                                        height: 40,
+                                        width: 40,
+                                      )),
                                   SizedBox(
                                     width: 8.toMobileWidth,
                                   ),
